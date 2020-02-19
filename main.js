@@ -12,11 +12,11 @@
 //lets make an employee profile using closures
 
 function employee(name, salary) {
-  var x = 0;
-  var y = x;
+  var name = name;
+  var salary = salary;
+  var array = [];
+
   return {
-    name: name,
-    salary: salary,
     sayMyName: function () {
       return name;
     },
@@ -27,32 +27,28 @@ function employee(name, salary) {
       salary = salary + n;
       return "your salary is " + salary + "$";
     },
-
     addFriend: function (object) {
-      var str = "you just became friend with " + object.name;
-      var str1 = str;
-      x = x + 1;
-      y = x;
-
-      if (x === 1) {
-        return str;
+      var str = ""
+      if (!(array.includes(object.sayMyName()))) {
+        array.push(object.sayMyName());
       }
-      else {
-        while (x > 1) {
-          x = x - 1;
-          str = str + " and " + object.name; // I failed to find a way to make the output looks like in the question however if I had more time I'd think in creating new function inside addFriend to store the value of str
-          return str;
-        }
+      str = "you just became a friend with " + array[0];
+      for (var i = 1; i < array.length; i++) {
+        str = str + " and " + array[i];
       }
+      return str;
     },
     listFriends: function () {
-      if (y === 1) {
+      if (array.length === 1) {
         return "you have one friend.";
       }
-      return "you have " + y + " friends.";
+      return "you have " +array.length+ " friends.";
     }
   }
 }
+
+
+   
 
 var employeeA = employee("jack", 100);
 var employeeB = employee("Mark", 200);
@@ -104,10 +100,44 @@ var employeeC = employee("Sara", 150);
 //    and when called again it will make it false.
 
 
-// Write your code here .....
+function Pet(petName) {
+  var petty = {};
+  
+  petty.avaibility = false,
+  petty.addInfo = addInfo,
+  petty.increaseAge = increaseAge,
+  petty.checkState = checkState,
+  petty.changeState = changeState
+
+  return petty;
+}
+
+var addInfo = function(age, owner, gender, species) {
+  return {
+    age: age,
+    owner: owner,
+    gender: gender,
+    species: species
+  };
+}
+
+var increaseAge = function(n) {
+  return pet.age = pet.age + n;
+}
+
+var checkState = function() {
+  return this.avaibility;  
+}
+
+var changeState = function() {
+  this.avaibility = !(this.avaibility);
+  return this.avaibility;
+}
+
 
 
 // Now, to make sure that you are actually reading, make a comment below this and type: Yes I am
+// Yes I am.
 
 //=============================================================================
 /*                                  Q3                                       */
@@ -136,8 +166,6 @@ function reduce(array, f, acc) {
 }
 
 // Use the updated version of reduce to write a function max that returns the maximum number in an array of numbers. 
-
-// Write your code here .....
 
 function max(array) {
   return reduce(array, function (acc, element) {
